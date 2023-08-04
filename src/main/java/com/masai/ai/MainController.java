@@ -45,7 +45,6 @@ public class MainController {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Authorization", "Bearer " + token);
             connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Access-Control-Allow-Origin", "*");
             connection.setDoOutput(true);
 
             try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
@@ -81,6 +80,7 @@ public class MainController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+        headers.set("Access-Control-Allow-Origin", "*");
         return new ResponseEntity<>("{ \"data\": " + response + "}", headers, HttpStatus.OK);
     }
 }
